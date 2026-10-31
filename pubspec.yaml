@@ -1,1 +1,19 @@
+name: films
+description: CineVora Films Pro OTT Mobile Platform
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  http: ^1.2.2
+  shared_preferences: ^2.3.2
+  cached_network_image: ^3.3.1
+  url_launcher: ^6.3.0
+
+flutter:
+  uses-material-design: true
 
