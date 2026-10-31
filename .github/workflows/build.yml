@@ -1,4 +1,3 @@
-
 name: Build APK
 on:
   workflow_dispatch:
@@ -17,8 +16,9 @@ jobs:
         with:
           channel: stable
       - run: |
+          rm -rf android
           flutter create --platforms=android --org com.cinevora --project-name films .
-          sed -i 's#<application#<uses-permission android:name="android.permission.INTERNET"/><uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/><application#' android/app/src/main/AndroidManifest.xml
+          sed -i 's#<application#<uses-permission android:name="android.permission.INTERNET"/><uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/><application android:usesCleartextTraffic="true"#' android/app/src/main/AndroidManifest.xml
           sed -i 's#android:label="films"#android:label="CineVora Films"#' android/app/src/main/AndroidManifest.xml
           sed -i 's/minSdkVersion = flutter.minSdkVersion/minSdkVersion = 21/g' android/app/build.gradle || true
           sed -i 's/compileSdkVersion = flutter.compileSdkVersion/compileSdkVersion = 34/g' android/app/build.gradle || true
