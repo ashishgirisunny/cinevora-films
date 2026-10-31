@@ -16,9 +16,12 @@ jobs:
 
       - uses: subosito/flutter-action@v2
         with:
+          flutter-version: '3.24.5'
           channel: stable
+          cache: false
 
-      - run: |
+      - name: Build Android App
+        run: |
           rm -rf android
           flutter create --platforms=android --org com.cinevora --project-name films .
           sed -i 's#<application#<uses-permission android:name="android.permission.INTERNET"/><uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/><application android:usesCleartextTraffic="true"#' android/app/src/main/AndroidManifest.xml
